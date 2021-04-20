@@ -1,0 +1,27 @@
+---
+# tasks file for myloadbalancer
+- package:
+        name:
+            - "haproxy"
+        state: present
+
+- service:
+        name: haproxy
+        state: started 
+
+- template:
+        src: haproxy.cfg
+        dest: /etc/haproxy/haproxy.cfg
+  notify: haproxy1
+
+- firewalld:
+        port: "tcp/8080"
+        state: enabled
+        permanent: yes
+        immediate: yes
+  ignore_errors: yes
+
+- selinux:
+        policy: targeted
+        state: permissive
+  

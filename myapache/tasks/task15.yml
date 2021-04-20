@@ -1,0 +1,6 @@
+- hosts: server
+  roles:
+          - role: "myapache"
+- hosts: lb
+  roles:  
+          - role: "myloadbancer"

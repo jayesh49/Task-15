@@ -1,0 +1,16 @@
+---
+
+# tasks file for myapache
+- package:
+        name:
+            - "httpd"
+            - "php"
+        state: present
+
+- service:
+        name: httpd
+        state: started
+- template:
+        src: index.php
+        dest: /var/www/html
+
